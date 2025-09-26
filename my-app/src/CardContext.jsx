@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useEffect } from "react";
 import supabase from "./SupabaseClient";
-import Toast from "./Components/Toast/TOAST.JSX";
+import Toast from "./Components/Toast/toast";
 
 
 
