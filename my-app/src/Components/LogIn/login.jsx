@@ -1,7 +1,7 @@
 
 import { Button, Label, TextInput, Spinner } from "flowbite-react";
 import { Link } from "react-router";
-import supabase from "../../supabaseClient";
+import supabase from "../../SupabaseClient";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 

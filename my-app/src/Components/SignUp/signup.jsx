@@ -1,9 +1,7 @@
 
-
-
 import { useState } from "react";
 import { Label, TextInput, Button, Spinner } from "flowbite-react";
-import supabase from "../../supabaseClient";
+import supabase from "../../SupabaseClient";
 import { Link, useNavigate } from "react-router"; 
 
 export function SignUpComponent() {

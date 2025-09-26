@@ -1,7 +1,5 @@
 
 
-
-
 import { Route, Routes, } from 'react-router'
 import './App.css'
 import HomeComponent from './Components/HOME/Home'

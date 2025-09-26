@@ -2,7 +2,7 @@ import { useState, useEffect,   } from "react";
 import { Button, DarkThemeToggle, Navbar, NavbarBrand,NavbarCollapse,} from "flowbite-react";
 import { NavLink, useNavigate } from "react-router";
 import { HiMenu, HiX } from "react-icons/hi";
-import supabase from "../../supabaseClient";
+import supabase from "../../SupabaseClient";
 import { AddCartComponent } from "../AddTOCART/Addtocart";
 import { useContext } from "react";
 import { CartContext } from "../../CardContext";

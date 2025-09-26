@@ -1,4 +1,4 @@
-// src/Components/Details/Details.jsx
+
 
 import { useParams, useNavigate } from "react-router";
 import { useContext } from "react";

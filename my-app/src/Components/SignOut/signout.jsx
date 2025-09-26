@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router';
-import supabase from '../../supabaseClient';
+import supabase from '../../SupabaseClient';
 
 function SignoutComponent({ children }) {
   const [authenticated, setAuthenticated] = useState(false);

@@ -17,10 +17,10 @@ import { Navigate, useNavigate } from 'react-router';
       });
     },[])
 
-const Navigate = useNavigate('');
+const navigate = useNavigate();
 
     const HandleButton= () =>{
-    Navigate ('Shop')
+    navigate ('Shop')
   }
 
 

@@ -5,7 +5,7 @@ import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
 import { useContext, useState } from "react";
 import { FiShoppingCart, FiTrash } from "react-icons/fi";
 import { CartContext } from "../../CardContext";
-import supabase from "../../supabaseClient";
+import supabase from "../../SupabaseClient";
 
 export function AddCartComponent() {
   const { cartItems, handleAdd, handleRemove, handleDelete } = useContext(CartContext) || {};

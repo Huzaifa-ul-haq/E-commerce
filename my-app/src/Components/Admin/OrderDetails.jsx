@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import supabase from "../../supabaseClient";
+import supabase from "../../SupabaseClient";
 
 const OrderDetail = () => {
   const { orderId } = useParams();

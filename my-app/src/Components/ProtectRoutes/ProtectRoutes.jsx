@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router";
-import supabase from '../../supabaseClient';
+import supabase from "../../SupabaseClient";
 
 const ProtectRoute = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(null); 
