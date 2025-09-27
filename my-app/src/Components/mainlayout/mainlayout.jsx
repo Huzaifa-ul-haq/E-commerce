@@ -6,21 +6,21 @@ import { Outlet } from 'react-router'
 
 
 
-export default function Mainlayout(){
-    return(
+export default function Mainlayout() {
+    return (
         <>
-        <NavbarComponent/>
-        
-       <Outlet
-       
-       />
-       
-        
-      
-       
-       </>
-       
-          
-    
+            <NavbarComponent />
+
+            <Outlet
+
+            />
+
+
+
+
+        </>
+
+
+
     )
 }

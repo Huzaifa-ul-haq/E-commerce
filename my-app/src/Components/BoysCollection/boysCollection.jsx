@@ -44,7 +44,7 @@ function BoysComponent() {
   {trendingItems.map((item, i) => (
     <Card
       key={`${item.id}-${i}`}
-      className="w-[280px] h-[450px] !bg-white group overflow-hidden shadow-lg rounded-3xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
+      className="w-[280px] h-[450px] !bg-white group overflow-hidden shadow-xl rounded-3xl !border-gray-200 hover:shadow-2xl transition-shadow duration-300"
     >
       <div className="overflow-hidden rounded-t-3xl h-[200px]">
         <img

@@ -25,7 +25,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="py-16 px-4 !bg-gray-100 dark:!bg-gray-200 transition-colors duration-700">
+    <section className="py-10 px-4 !bg-gray-100 dark:!bg-gray-100 transition-colors duration-700">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-5xl font-bold text-cyan-600 mb-12 pt-20">
           Our Services

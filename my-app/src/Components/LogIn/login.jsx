@@ -56,8 +56,8 @@ const handleSubmit = async (event) => {
 
 
   return (
-   <div className="w-full h-[100vh] flex justify-center items-center bg-gradient-to-br from-teal-100 via-cyan-100 to-gray-200">
-  <div className="w-[70%] max-w-sm bg-white shadow-2xl border border-teal-300 rounded-3xl p-8">
+   <div className="w-full h-[90vh] flex justify-center items-center bg-gradient-to-br from-teal-100 via-cyan-100 to-gray-200">
+  <div className="w-[90%]  bg-white shadow-2xl border border-teal-300 rounded-3xl p-8 mt-20 px-5">
     {message && (
       <span className="text-teal-700 font-semibold text-2xl text-center block mb-4">
         {message}
@@ -87,7 +87,7 @@ const handleSubmit = async (event) => {
           onChange={(e) => setEmail(e.target.value)}
           required
           shadow
-          className="border rounded-lg border-teal-300 focus:border-teal-600 focus:ring-2 focus:ring-cyan-400 transition"
+          className="border rounded-lg border-gray-100 focus:border-teal-600 focus:ring-2 focus:ring-cyan-400 transition"
         />
       </div>
 
@@ -106,7 +106,7 @@ const handleSubmit = async (event) => {
           onChange={(e) => setPassword(e.target.value)}
           required
           shadow
-          className="border rounded-lg border-teal-300 focus:border-teal-600 focus:ring-2 focus:ring-cyan-400 transition"
+          className="border rounded-lg border-gray-100 focus:border-teal-600 focus:ring-2 focus:ring-cyan-400 transition"
         />
       </div>
 

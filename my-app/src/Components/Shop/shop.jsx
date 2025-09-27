@@ -27,13 +27,14 @@ export default function ShopComponent() {
 
   useEffect(() => {
     AOS.init({
-      duration: 500,
+      duration: 300,
       easing: 'ease-in-out',
       once: true,
     });
   }, []);
 
   const trendingItems = [
+    
     { id: 0, name: "Baby Rompar", img: "/images/kids0.jpg", price: "80.00" },
     { id: 1, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00" },
     { id: 2, name: "Baby Shirt", img: "/images/kids02.webp", price: "80.00" },
@@ -61,11 +62,11 @@ export default function ShopComponent() {
   ];
 
   return (
-    <div className="bg-gradient-to-b text-gray-800 font-sans pt-10">
+    <div className="bg-gradient-to-b text-gray-800 font-sans pt-15">
 
       {/* Section Header */}
-      <div className="text-center py-12">
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-teal-700 drop-shadow-sm">
+      <div className="text-center py-7  ">
+        <h2 className="text-4xl md:text-5xl  font-serif font-bold text-teal-700 drop-shadow-sm">
           All Products
         </h2>
         <p className="mt-3 text-gray-500 text-md md:text-lg tracking-wide">
@@ -75,21 +76,21 @@ export default function ShopComponent() {
 
       {/* Toast Notification */}
       {toast.show && (
-        <div className="fixed bottom-5 right-5 bg-teal-600 text-white px-4 py-3 rounded-lg shadow-lg z-50 transition-all duration-500">
-          {toast.message}
+        <div className="fixed bottom-5 right-5 bg-teal-600 text-white py-4  rounded-lg shadow-lg z-50 transition-all duration-500">
+          {toast.message} 
         </div>
       )}
 
       {/* Product Cards */}
-      <div className="flex flex-wrap gap-8 justify-center mt-12 place-items-center p-5">
+      <div className="flex flex-wrap gap-8 mb-10 justify-center place-items-center p-5">
         {trendingItems.map((item, i) => (
           <div
             key={`${item.id}-${i}`}
             data-aos="fade-up"
-            data-aos-delay={i * 100}
+            data-aos-delay={i * 50}
           >
             <Card
-              className="relative w-[300px] h-[450px] !bg-white group overflow-hidden shadow-lg rounded-3xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300 "
+              className="relative w-[300px] h-[450px] !bg-white group overflow-hidden shadow-lg rounded-3xl  !border-gray-200 hover:shadow-2xl transition-shadow duration-300 "
             >
               {/* Eye Icon Button */}
               <button
@@ -97,7 +98,7 @@ export default function ShopComponent() {
                 className="absolute top-3 right-3 z-10 p-2 bg-white rounded-full shadow hover:bg-teal-100 transition"
                 title="View Details"
               >
-                <HiOutlineEye className="text-teal-600 text-xl" />
+                <HiOutlineEye className="text-teal-600 text-xl cursor-pointer" />
               </button>
 
               {/* Product Image */}

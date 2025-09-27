@@ -34,13 +34,13 @@ function App() {
       <Routes>
 
         <Route path="/" element={<HomeComponent />} />
-        <Route path="About" element={<AboutUsCompontent />} />
-        <Route path="Shop" element={<ShopComponent />} />
-        <Route path="Contact" element={<ContactComponent />} />
-        <Route path="/Login" element={<LoginInComponent />} />
-        <Route path="/Signup" element={<SignUpComponent />} />
-        <Route path="/product/:id" element={<DetailComponent/>} />
-         <Route path="/Services" element={<ServicesComponent />} />
+        <Route path="/about" element={<AboutUsCompontent />} />
+        <Route path="/shop" element={<ShopComponent />} />
+        <Route path="/contact" element={<ContactComponent />} />
+        <Route path="/login" element={<LoginInComponent />} />
+        <Route path="/signup" element={<SignUpComponent />} />
+        <Route path="/product/:id" element={<DetailComponent />} />
+        <Route path="/services" element={<ServicesComponent />} />
 
         <Route
           path="/admin/orders"
@@ -53,16 +53,15 @@ function App() {
 
           }
         />
-        
-       <Route
-  path="/admin/order/:orderId"
-  element={
-    <ProtectRoute>
-      <OrderDetail />
-    </ProtectRoute>
-  }
-/>
-        
+
+        <Route
+          path="/admin/order/:orderId"
+          element={
+            <ProtectRoute>
+              <OrderDetail />
+            </ProtectRoute>
+          }
+        />
 
       </Routes>
 

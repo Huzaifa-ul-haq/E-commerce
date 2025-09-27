@@ -13,11 +13,12 @@ import { CartProvider } from './CardContext.jsx';
 
 
 createRoot(document.getElementById('root')).render(
-   <BrowserRouter>
-       <CartProvider>
-        <Mainlayout/>
-        
-    <App/>
-    </CartProvider>    
+  <BrowserRouter>
+    <CartProvider>
+      <Mainlayout />
+
+      <App />
+      
+    </CartProvider>
   </BrowserRouter>
 )

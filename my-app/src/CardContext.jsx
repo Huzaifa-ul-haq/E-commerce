@@ -150,106 +150,29 @@ const addToCart = async (product) => {
 };
 
 
-
-
-
-
-
-
-  const handleAdd = async (productId) => {
+const handleAdd = async (productId) => {
   const user = await checkAuth();
   if (!user) {
     showToast("Please login first", "error");
     return;
   }
 
-  try {
-    
-    const item = cartItems.find((item) => item.id === productId);
-    if (!item) return;
+  const item = cartItems.find((item) => item.id === productId);
+  if (!item) return;
 
-    
-    const { data: existingItem, error: fetchError } = await supabase
-      .from("cart_items")
-      .select("*")
-      .eq("user_id", user.id)
-      .eq("product_id", Number(productId)) 
-      .single();
-
-    if (fetchError && fetchError.code !== 'PGRST116') {
-      console.error("Error finding item:");
-      showToast("Error updating item", "error");
-      return;
-    }
-
-    if (existingItem) {
-      const newQuantity = existingItem.quantity ;
-      const newTotalPrice = newQuantity * parseFloat(item.price.replace("$", ""));
-      
-      const { error } = await supabase
-        .from("cart_items")
-        .update({ 
-          quantity: newQuantity,
-          totalPrice: newTotalPrice
-        })
-        .eq("id", existingItem.id);
-
-      if (error) {
-        console.error("Supabase update error:", error);
-        showToast("Error updating item", "error");
-        return;
-      }
-    } else {
-      
-      const priceValue = parseFloat(item.price.replace("$", ""));
-      const { error } = await supabase.from("cart_items").insert([
-        {
-          user_id: user.id,
-          product_id: Number(productId), 
-          name: item.name,
-          price: priceValue,
-          quantity: 1,
-          totalPrice: priceValue,
-          img: item.img || item.image || null
-        },
-      ]);
-      
-      if (error) {
-        console.error("Supabase insert error:", error);
-        showToast("Error adding item", "error");
-        return;
-      }
-    }
-
-    
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === productId
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-              totalPrice: (item.quantity + 1) * parseFloat(item.price.replace("$", "")),
-            }
-          : item
-      )
-    );
-
-    showToast("Item updated", "success");
-  } catch (error) {
-    console.error("Unexpected error in handleAdd:", error);
-    showToast("Error updating item", "error");
-  }
-};
-
-const handleRemove = async (productId) => {
-  const user = await checkAuth();
-  if (!user) {
-    showToast("Please login first", "error");
-    return;
-  }
+  setCartItems((prevItems) =>
+    prevItems.map((item) =>
+      item.id === productId
+        ? {
+            ...item,
+            quantity: item.quantity + 1,
+            totalPrice: (item.quantity + 1) * parseFloat(item.price.replace("$", "")),
+          }
+        : item
+    )
+  );
 
   try {
-
     const { data: existingItem, error: fetchError } = await supabase
       .from("cart_items")
       .select("*")
@@ -257,67 +180,122 @@ const handleRemove = async (productId) => {
       .eq("product_id", Number(productId))
       .single();
 
-    if (fetchError && fetchError.code !== 'PGRST116') {
-      console.error("Error finding item:", fetchError.message);
-      showToast("Error removing item", "error");
+    if (fetchError && fetchError.code !== "PGRST116") {
+      console.error("Error finding item:", fetchError);
       return;
     }
 
     if (existingItem) {
-      if (existingItem.quantity === 1) {
-        
-        const { error } = await supabase
-          .from("cart_items")
-          .delete()
-          .eq("id", existingItem.id);
+      const newQuantity = existingItem.quantity + 0; 
+      const newTotalPrice =
+        newQuantity * parseFloat(item.price.replace("$", ""));
 
-        if (error) {
-          console.error("Supabase delete error:", error);
-          showToast("Error removing item", "error");
-          return;
-        }
-      } else {
-        
-        const newQuantity = existingItem.quantity;
-        const newTotalPrice = newQuantity * existingItem.price;
-        
-        const { error } = await supabase
-          .from("cart_items")
-          .update({ 
-            quantity: newQuantity,
-            totalPrice: newTotalPrice
-          })
-          .eq("id", existingItem.id);
+      const { error } = await supabase
+        .from("cart_items")
+        .update({
+          quantity: newQuantity,
+          totalPrice: newTotalPrice,
+        })
+        .eq("id", existingItem.id);
 
-        if (error) {
-          console.error("Supabase update error:", error);
-          showToast("Error updating item", "error");
-          return;
-        }
+      if (error) {
+        console.error("Supabase update error:", error);
+      }
+    } else {
+      const priceValue = parseFloat(item.price.replace("$", ""));
+      const { error } = await supabase.from("cart_items").insert([
+        {
+          user_id: user.id,
+          product_id: Number(productId),
+          name: item.name,
+          price: priceValue,
+          quantity: 1,
+          totalPrice: priceValue,
+          img: item.img || item.image || null,
+        },
+      ]);
+
+      if (error) {
+        console.error("Supabase insert error:", error);
       }
     }
-
-    
-    setCartItems((prevItems) =>
-      prevItems
-        .map((item) =>
-          item.id === productId
-            ? {
-                ...item,
-                quantity: item.quantity - 1,
-                totalPrice: (item.quantity - 1) * parseFloat(item.price.replace("$", "")),
-              }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
-
-    showToast("Item removed", "info");
   } catch (error) {
-    console.error("Unexpected error in handleRemove:", error);
-    showToast("Error removing item", "error");
+    console.error("Unexpected error in handleAdd:", error);
   }
 };
+
+
+const handleRemove = async (productId) => {
+  const user = await checkAuth();
+  if (!user) {
+    showToast("Please login first", "error"); 
+    return;
+  }
+
+  const item = cartItems.find((item) => item.id === productId);
+ 
+  const newQuantity = item.quantity - 1;
+
+  if (newQuantity > 0) {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === productId
+          ? {
+              ...item,
+              quantity: newQuantity,
+              totalPrice: newQuantity * parseFloat(item.price.replace("$", "")),
+            }
+          : item
+      )
+    );
+    
+  } else {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+   
+  }
+  try {
+    const { data: existingItem, error: fetchError } = await supabase
+      .from("cart_items")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("product_id", Number(productId))
+      .single();
+
+    if (fetchError && fetchError.code !== "PGRST116") {
+      console.error("Error fetching item:", fetchError);
+      return;
+    }
+
+    if (!existingItem) return;
+
+    if (newQuantity > 0) {
+      const newTotalPrice = newQuantity * parseFloat(item.price.replace("$", ""));
+      const { error } = await supabase
+        .from("cart_items")
+        .update({
+          quantity: newQuantity,
+          totalPrice: newTotalPrice,
+        })
+        .eq("id", existingItem.id);
+
+      if (error) {
+        console.error("Supabase update error:", error);
+      }
+    } else {
+      const { error } = await supabase
+        .from("cart_items")
+        .delete()
+        .eq("id", existingItem.id);
+
+      if (error) {
+        console.error("Supabase delete error:", error);
+      }
+    }
+  } catch (error) {
+    console.error("Unexpected error in handleRemove:", error);
+  }
+};
+
 
 const handleDelete = async (productId) => {
   const user = await checkAuth();
@@ -326,31 +304,25 @@ const handleDelete = async (productId) => {
     return;
   }
 
+  setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+  showToast("Item removed", "success");
+
   try {
     
     const { error } = await supabase
       .from("cart_items")
       .delete()
       .eq("user_id", user.id)
-      .eq("product_id", Number(productId)); 
+      .eq("product_id", Number(productId));
 
     if (error) {
       console.error("Supabase delete error:", error);
-      showToast("Error deleting item", "error");
-      return;
     }
-
-    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
-    showToast("Item deleted from cart", "info");
   } catch (error) {
     console.error("Unexpected error in handleDelete:", error);
-    showToast("Error deleting item", "error");
   }
 };
-  
 
-   
-  
 
   const clearCart = async () => {
     const user = await checkAuth();
@@ -375,64 +347,59 @@ const handleDelete = async (productId) => {
   };
 
 
-
   const checkout = async () => {
+  const user = await checkAuth();
+  if (!user) {
+    showToast("Please login to checkout", "error");
+    return;
+  }
+
+  const itemsToOrder = [...cartItems]; 
+
+
+  setCartItems([]);
+  showToast(`Your order is being placed...`, "success");
+
   try {
-    const user = await checkAuth();
-    if (!user) {
-      showToast("Please login to checkout", "error");
-      return;
-    }
+    const totalPrice = itemsToOrder.reduce((sum, item) => sum + item.totalPrice, 0);
 
-
-    const totalPrice = cartItems.reduce((sum, item) => sum + item.totalPrice, 0);
-
-
-
+    
     const { data: order, error: orderError } = await supabase
       .from("orders")
       .insert([
         {
           user_id: user.id,
           user_name: user.user_metadata?.full_name || "Guest",
-          total_amount: totalPrice, 
-          status: "completed"
-        }
+          total_amount: totalPrice,
+          status: "completed",
+        },
       ])
       .select()
       .single();
 
     if (orderError) {
       console.error("Order creation error:", orderError);
-      showToast("Error creating order", "error");
-
       return;
     }
 
-
-
-    for (const item of cartItems) {
-      const { error: itemError } = await supabase
-        .from("order_items")
-        .insert([
-          {
-            order_id: order.id,
-            product_id: item.id,
-            product_name: item.name,
-            price: parseFloat(item.price.replace("$", "")),
-            quantity: item.quantity,
-            total_price: item.totalPrice
-          }
-        ]);
+  
+    for (const item of itemsToOrder) {
+      const { error: itemError } = await supabase.from("order_items").insert([
+        {
+          order_id: order.id,
+          product_id: item.id,
+          product_name: item.name,
+          price: parseFloat(item.price.replace("$", "")),
+          quantity: item.quantity,
+          total_price: item.totalPrice,
+        },
+      ]);
 
       if (itemError) {
         console.error("Order item error:", itemError);
-        showToast("Error saving order items", "error");
-        return;
+    
       }
     }
-
-    
     const { error: deleteError } = await supabase
       .from("cart_items")
       .delete()
@@ -442,21 +409,11 @@ const handleDelete = async (productId) => {
       console.error("Cart clear error:", deleteError);
     }
 
-
-    setCartItems([]);
-    
-    
-    showToast(` Your Order placed successfully! `, "success");
-
-    console.log("Order completed:", order);
-
   } catch (error) {
     console.error("Checkout error:", error);
-    showToast("Error during checkout", "error");
+  
   }
 };
-
-
 
 
 
@@ -473,6 +430,7 @@ const handleDelete = async (productId) => {
         clearCart,
         setCartItems,
         checkout,
+        
 
         
         isLoading

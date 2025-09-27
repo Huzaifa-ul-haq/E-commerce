@@ -41,7 +41,7 @@ export default function DetailComponent() {
 
   if (!product) {
     return (
-      <div className="p-10 text-center text-red-600 text-xl font-semibold">
+      <div className="pt-10 text-center text-red-600 text-xl font-semibold">
         Product not found.
       </div>
     );
@@ -52,13 +52,13 @@ export default function DetailComponent() {
   };
 
   return (
-   <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 pt-20">
+   <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 pt-25">
   {/* Back Button */}
   <button
     onClick={() => navigate(-1)}
     className="flex items-center gap-2 text-teal-600 hover:text-teal-800 font-medium tracking-wide mb-8 transition"
   >
-    <HiArrowLeft className="text-xl" />
+    <HiArrowLeft className="text-xl  !cursor-pointer" />
     <span className="text-sm uppercase cursor-pointer">Back to Shop</span>
   </button>
 
@@ -68,7 +68,7 @@ export default function DetailComponent() {
     <img
       src={product.img}
       alt={product.name}
-      className="w-full md:w-[45%] h-[480px] object-cover rounded-2xl shadow-xl bg-gray-100 border border-gray-200"
+      className="w-full md:w-[45%] h-[300px] md:h-[400px] sm:h-[400px] lg:h-[400px] object-contain rounded-2xl shadow-xl bg-white-100 border border-gray-200"
     />
 
     {/* Product Info */}

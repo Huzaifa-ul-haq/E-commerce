@@ -30,37 +30,16 @@ const ContactComponent = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6 sm:p-12 bg-cyan-200 shadow-xl rounded-3xl my-20 border border-cyan-200">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-cyan-700 tracking-tight">
+    <div className="max-w-7xl mx-auto p-10 sm:p-12 bg-gray-100 shadow-xl rounded-3xl mt-21 border mb-3 border-cyan-200">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10  text-cyan-700 tracking-tight">
         Get in Touch
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-12 items-start">
-        {/* Contact Info */}
-        <div className="space-y-6 text-cyan-900">
-          <h3 className="text-2xl font-semibold text-cyan-700">Contact Information</h3>
-          <ul className="space-y-5 text-lg">
-            <li className="flex items-start gap-4">
-              <FaMapMarkerAlt className="text-cyan-600 text-xl mt-1" />
-              <span>Karachi, Pakistan</span>
-            </li>
-            <li className="flex items-start gap-4">
-              <FaPhoneAlt className="text-cyan-600 text-xl mt-1" />
-              <span>+92 1234567</span>
-            </li>
-            <li className="flex items-start gap-4">
-              <FaEnvelope className="text-cyan-600 text-xl mt-1" />
-              <span>support@fashion.pk</span>
-            </li>
-            <li className="flex items-start gap-4">
-              <FaClock className="text-cyan-600 text-xl mt-1" />
-              <span>Mon - Fri: 9am - 9pm</span>
-            </li>
-          </ul>
-        </div>
+      <div className="grid md:grid-cols-2 gap-12 items-start ">
+  
 
         {/* Contact Form */}
-        <div className="bg-gray-100 p-8 rounded-2xl shadow-md border border-cyan-200">
+        <div className="bg-gray-100 p-8 rounded-2xl shadow-md border border-cyan-900 ">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -101,6 +80,28 @@ const ContactComponent = () => {
               </div>
             )}
           </form>
+        </div>
+              {/* Contact Info */}
+        <div className="space-y-6 text-black pt-5 grid justify-center items-center">
+          <h3 className="text-3xl font-semibold text-cyan-700">Contact Information</h3>
+          <ul className="space-y-5 text-lg">
+            <li className="flex items-start gap-4">
+              <FaMapMarkerAlt className="text-red-700 text-xl mt-1" />
+              <span>Karachi, Pakistan</span>
+            </li>
+            <li className="flex items-start gap-4">
+              <FaPhoneAlt className="text-green-400 text-xl mt-1" />
+              <span>+92 1234567</span>
+            </li>
+            <li className="flex items-start gap-4">
+              <FaEnvelope className="text-blue-600 text-xl mt-1" />
+              <span>support@fashion.pk</span>
+            </li>
+            <li className="flex items-start gap-4">
+              <FaClock className="text-cyan-950 text-xl mt-1" />
+              <span>Mon - Fri: 9am - 9pm</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
