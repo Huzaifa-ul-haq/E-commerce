@@ -81,7 +81,7 @@ export default function ShopComponent() {
       )}
 
       {/* Product Cards */}
-      <div className="flex flex-wrap gap-8 justify-center p-2 mt-12 place-items-center">
+      <div className="flex flex-wrap gap-8 justify-center mt-12 place-items-center p-5">
         {trendingItems.map((item, i) => (
           <div
             key={`${item.id}-${i}`}
@@ -89,7 +89,7 @@ export default function ShopComponent() {
             data-aos-delay={i * 100}
           >
             <Card
-              className="relative w-[300px] h-[450px] !bg-white group overflow-hidden shadow-lg rounded-3xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
+              className="relative w-[300px] h-[450px] !bg-white group overflow-hidden shadow-lg rounded-3xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300 "
             >
               {/* Eye Icon Button */}
               <button
