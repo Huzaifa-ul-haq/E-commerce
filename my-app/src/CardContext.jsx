@@ -353,17 +353,12 @@ const handleDelete = async (productId) => {
     showToast("Please login to checkout", "error");
     return;
   }
-
   const itemsToOrder = [...cartItems]; 
-
-
   setCartItems([]);
   showToast(`Your order is being placed...`, "success");
 
   try {
-    const totalPrice = itemsToOrder.reduce((sum, item) => sum + item.totalPrice, 0);
-
-    
+    const totalPrice = itemsToOrder.reduce((sum, item) => sum + item.totalPrice, 0);   
     const { data: order, error: orderError } = await supabase
       .from("orders")
       .insert([
@@ -381,8 +376,6 @@ const handleDelete = async (productId) => {
       console.error("Order creation error:", orderError);
       return;
     }
-
-  
     for (const item of itemsToOrder) {
       const { error: itemError } = await supabase.from("order_items").insert([
         {
@@ -394,7 +387,6 @@ const handleDelete = async (productId) => {
           total_price: item.totalPrice,
         },
       ]);
-
       if (itemError) {
         console.error("Order item error:", itemError);
     
@@ -408,7 +400,6 @@ const handleDelete = async (productId) => {
     if (deleteError) {
       console.error("Cart clear error:", deleteError);
     }
-
   } catch (error) {
     console.error("Checkout error:", error);
   

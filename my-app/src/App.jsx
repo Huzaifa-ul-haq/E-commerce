@@ -2,7 +2,7 @@
 
 import { Route, Routes, } from 'react-router'
 import './App.css'
-import HomeComponent from './Components/HOME/Home'
+import HomeComponent from './Components/Home/Home'
 import AboutUsCompontent from './Components/ABOUT/AboutUs'
 import ShopComponent from './Components/Shop/shop'
 import FooterComponent from './Components/Footer/Footer'
@@ -41,6 +41,7 @@ function App() {
         <Route path="/signup" element={<SignUpComponent />} />
         <Route path="/product/:id" element={<DetailComponent />} />
         <Route path="/services" element={<ServicesComponent />} />
+        
 
         <Route
           path="/admin/orders"
