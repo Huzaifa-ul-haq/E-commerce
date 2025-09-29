@@ -20,13 +20,13 @@ export default function ShopComponent() {
 
   const trendingItems = [
     // Kids
-    { id: 1, name: "Baby Rompar", img: "/images/kids0.jpg", price: "80.00", category: "Kids" },
+    { id: 1, name: "Rompar", img: "/images/kids.avif", price: "80.00", category: "Kids" }, 
     { id: 2, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00", category: "Kids" },
     { id: 3, name: "Baby Shirt", img: "/images/kids02.webp", price: "80.00", category: "Kids" },
     { id: 4, name: "Baby Sweater", img: "/images/kids03.webp", price: "80.00", category: "Kids" },
     { id: 5, name: "Summer Clothes", img: "/images/kids_04.jpg", price: "80.00", category: "Kids" },
     { id: 6, name: "Baby Boy Dress", img: "/images/kids05.avif", price: "80.00", category: "Kids" },
-    { id: 7, name: "Rompar", img: "/images/kids.avif", price: "80.00", category: "Kids" },
+    { id: 7, name: "Baby Rompar", img: "/images/kids0.jpg", price: "80.00", category: "Kids" },
     { id: 8, name: "Baby Dress", img: "/images/kids07.avif", price: "80.00", category: "Kids" },
     // Men
     { id: 9, name: "Polo Shirt", img: "/images/polo.webp", price: "60.00", category: "Men" },
