@@ -200,7 +200,7 @@ export function AddCartComponent() {
                 <img
                   src={item.img || item.image}
                   alt={item.name}
-                  className="w-28 h-28 object-cover rounded-xl border-2 border-blue-400 shadow-sm"
+                  className="w-22 h-22 object-cover rounded-xl border-2 border-blue-400 shadow-sm"
                   loading="lazy"
                 />
                 <div className="flex-1 flex flex-col justify-between">
@@ -245,7 +245,7 @@ export function AddCartComponent() {
         </DrawerItems>
 
 {cartItems && cartItems.length > 0 && (
-  <div className="px-6 py-4 border-t border-gray-300 bg-gray-50 rounded-b-3xl">
+  <div className="px-2 h-[200px] py-2 border-t border-gray-300 bg-gray-50 rounded-b-3xl">
     <h3 className="text-xl font-bold text-blue-700 mb-4">
       Total Price: <span className="text-blue-600">${totalPrice.toFixed(2)}</span>
     </h3>

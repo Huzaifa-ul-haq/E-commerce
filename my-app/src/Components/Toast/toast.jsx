@@ -107,7 +107,7 @@ const Toast = ({ message, type = 'info', onClose }) => {
 
           {/* Message */}
           <div className="flex-1">
-            <span className="font-semibold text-lg block">{message}</span>
+            <span className="font-semibold justify-center text-lg block">{message}</span>
           
           </div>
 
