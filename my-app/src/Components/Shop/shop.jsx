@@ -1,16 +1,47 @@
 
 
+
+
 import { Card } from 'flowbite-react';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { CartContext } from '../../CardContext';
 import { HiOutlineEye } from 'react-icons/hi';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function ShopComponent() {
   const { addToCart } = useContext(CartContext);
   const [toast, setToast] = useState({ show: false, message: '' });
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const categoryRefs = useRef({});
+
+  const trendingItems = [
+    // Kids
+    { id: 0, name: "Baby Shirt", img: "/images/kids02.webp", price: "80.00", category: "Kids" },
+    { id: 1, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00", category: "Kids" },
+    { id: 2, name: "Baby Rompar", img: "/images/kids-0.webp", price: "80.00", category: "Kids" },
+    { id: 3, name: "Baby Sweater", img: "/images/kids03.webp", price: "80.00", category: "Kids" },
+    { id: 4, name: "Summer Clothes", img: "/images/kids_04.jpg", price: "80.00", category: "Kids" },
+    { id: 5, name: "Baby Boy Dress", img: "/images/kids05.avif", price: "80.00", category: "Kids" },
+
+    // Men
+    { id: 6, name: "Polo Shirt", img: "/images/polo.webp", price: "60.00", category: "Men" },
+    { id: 7, name: "Round Neck T-Shirt", img: "/images/round.webp", price: "20.00", category: "Men" },
+    { id: 8, name: "Men T-shirt", img: "/images/Men.webp", price: "40.00", category: "Men" },
+    { id: 9, name: "Black T-shirt", img: "/images/black.webp", price: "90.00", category: "Men" },
+    { id: 10, name: "Yellow Striped Shirt", img: "/images/striped.webp", price: "80.00", category: "Men" },
+
+    // Women
+    { id: 11, name: "Twisted Waist Shirt", img: "/images/girls-1.webp", price: "60.00", category: "Women" },
+    { id: 12, name: "Floral Shirt", img: "/images/girls-2.webp", price: "20.00", category: "Women" },
+    { id: 13, name: "Collared Blouse", img: "/images/girls3.webp", price: "40.00", category: "Women" },
+    { id: 14, name: "Women's Shirt", img: "/images/girls-4.webp", price: "90.00", category: "Women" },
+    { id: 25, name: "Collar Shirt", img: "/images/girls-5.webp", price: "60.00", category: "Women" },
+    { id: 16, name: "Wedding Frock", img: "/images/girls07.jpg", price: "80.00", category: "Women" },
+  ];
 
   const handleAddToCart = (item) => {
     addToCart(item);
@@ -20,8 +51,6 @@ export default function ShopComponent() {
       setToast({ show: false, message: '' });
     }, 2000);
   };
-
-  const navigate = useNavigate();
 
   const handleViewDetails = (id) => {
     navigate(`/product/${id}`);
@@ -35,37 +64,33 @@ export default function ShopComponent() {
     });
   }, []);
 
-  const trendingItems = [
-    // Kids
-    { id: 0, name: "Baby Shirt", img: "/images/kids02.webp", price: "80.00", category: "Kids" },
-    { id: 1, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00", category: "Kids" },
-    { id: 2, name: "Baby Rompar", img: "/images/kids-0.webp", price: "80.00", category: "Kids" },
-    { id: 3, name: "Baby Sweater", img: "/images/kids03.webp", price: "80.00", category: "Kids" },
-    { id: 4, name: "Summer Clothes", img: "/images/kids_04.jpg", price: "80.00", category: "Kids" },
-    { id: 5, name: "Baby Boy Dress", img: "/images/kids05.avif", price: "80.00", category: "Kids" },
+ 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const category = params.get('category');
 
-    // Men
-    { id: 8, name: "Polo Shirt", img: "/images/polo.webp", price: "60.00", category: "Men" },
-    { id: 9, name: "Round Neck T-Shirt", img: "/images/round.webp", price: "20.00", category: "Men" },
-    { id: 10, name: "Men T-shirt", img: "/images/Men.webp", price: "40.00", category: "Men" },
-    { id: 11, name: "Black T-shirt", img: "/images/black.webp", price: "90.00", category: "Men" },
-    { id: 12, name: "Yellow Striped Shirt", img: "/images/striped.webp", price: "80.00", category: "Men" },
-
-    // Women
-    { id: 16, name: "Twisted Waist Shirt", img: "/images/girls-1.webp", price: "60.00", category: "Women" },
-    { id: 17, name: "Floral Shirt", img: "/images/girls-2.webp", price: "20.00", category: "Women" },
-    { id: 18, name: "Collared Blouse", img: "/images/girls3.webp", price: "40.00", category: "Women" },
-    { id: 19, name: "Women's Shirt", img: "/images/girls-4.webp", price: "90.00", category: "Women" },
-    { id: 20, name: "Collar Shirt", img: "/images/girls-5.webp", price: "60.00", category: "Women" },
-    { id: 23, name: "Wedding Frock", img: "/images/girls07.jpg", price: "80.00", category: "Women" },
-  ];
+    if (category && categoryRefs.current[category]) {
+      setTimeout(() => {
+        categoryRefs.current[category].scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 300); 
+    }
+  }, [location.search]);
 
   const renderCategorySection = (categoryName) => {
     const filteredItems = trendingItems.filter(item => item.category === categoryName);
 
     return (
-      <div key={categoryName} className="mb-16">
-        <h3 className="text-5xl font-bold text-white  p-2 mb-6 text-center bg-cyan-500">{categoryName} Collections</h3>
+      <div
+        key={categoryName}
+        ref={(el) => (categoryRefs.current[categoryName] = el)}
+        className="mb-16"
+      >
+        <h3 className="text-5xl font-bold text-white p-2 mb-6 text-center bg-cyan-500">
+          {categoryName} Collections
+        </h3>
         <div className="flex flex-wrap gap-8 justify-center place-items-center p-5">
           {filteredItems.map((item, i) => (
             <div key={`${item.id}-${i}`} data-aos="fade-up" data-aos-delay={i * 50}>
@@ -73,10 +98,10 @@ export default function ShopComponent() {
                 {/* View Details Button */}
                 <button
                   onClick={() => handleViewDetails(item.id)}
-                  className="absolute top-3 right-3 z-10 p-2 bg-white rounded-full shadow hover:bg-teal-100 transition"
+                  className="absolute top-3 right-3 z-10 p-5 bg-gray-200 rounded-full shadow hover:bg-gray-300 transition cursor-pointer"
                   title="View Details"
                 >
-                  <HiOutlineEye className="text-teal-600 text-xl cursor-pointer" />
+                  <HiOutlineEye className="text-teal-900 text-xl" />
                 </button>
 
                 {/* Product Image */}
@@ -119,7 +144,6 @@ export default function ShopComponent() {
         </p>
       </div>
 
-
       {/* Category Sections */}
       {renderCategorySection("Kids")}
       {renderCategorySection("Men")}
@@ -127,4 +151,3 @@ export default function ShopComponent() {
     </div>
   );
 }
-

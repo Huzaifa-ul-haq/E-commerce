@@ -2,7 +2,7 @@
 
 import { Route, Routes, } from 'react-router'
 import './App.css'
-import HomeComponent from './Components/Home/Home'
+
 import AboutUsCompontent from './Components/ABOUT/AboutUs'
 import ShopComponent from './Components/Shop/shop'
 import FooterComponent from './Components/Footer/Footer'
@@ -15,6 +15,8 @@ import DetailComponent from './Components/Details/Details'
 import ProtectRoute from './Components/ProtectRoutes/ProtectRoutes'
 import ServicesComponent from './Components/Services/Services'
 import OrderDetail from './Components/Admin/OrderDetails'
+import HomeComponent from './Components/HOME/Home'
+import CheckoutForm from './Components/CheckOut/checkout'
 
 
 
@@ -41,6 +43,8 @@ function App() {
         <Route path="/signup" element={<SignUpComponent />} />
         <Route path="/product/:id" element={<DetailComponent />} />
         <Route path="/services" element={<ServicesComponent />} />
+        <Route path="/checkout" element={<CheckoutForm />} />
+
         
 
         <Route

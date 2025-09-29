@@ -3,7 +3,7 @@ import pic1 from '/images/hh.jpg';
 import pic2 from '/images/second-hero.webp';
 import pic3 from '/images/modern-2.avif';
 import banner from '/images/banner1.avif'
-import BoysComponent from '../BoysCollection/boysCollection';
+import BoysComponent from '../TrendingItems/trendingitems';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
@@ -19,9 +19,16 @@ function HomeComponent() {
 
   const navigate = useNavigate();
 
-  const HandleButton = () => {
-    navigate('Shop')
+  const HandleButton1 = () => {
+    navigate('/Shop')
   }
+    const HandleButton2 = () => {
+    navigate('/shop?category=Women')
+  }
+    const HandleButton3 = () => {
+    navigate('/shop?category=Men')
+  }
+
 
 
 
@@ -49,7 +56,7 @@ function HomeComponent() {
 
           </h3>
 
-          <button onClick={HandleButton} className=" px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
+          <button onClick={HandleButton1} className=" px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
             Shop Now
           </button>
         </div>
@@ -86,7 +93,7 @@ function HomeComponent() {
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          <div className="p-15">
+          
             <h1 className="text-3xl sm:text-4xl  md:text-5xl font-serif font-bold leading-snug text-teal-500 drop-shadow-md ">
               Elegant Fashion
             </h1>
@@ -97,10 +104,10 @@ function HomeComponent() {
               more-or-less normal distribution of letters...
             </p>
 
-            <button onClick={HandleButton} className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
+            <button onClick={HandleButton2} className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
               Shop Now
             </button>
-          </div>
+          
         </div>
 
         {/* Image Section */}
@@ -137,7 +144,7 @@ function HomeComponent() {
             more-or-less normal distribution of letters...
           </p>
 
-          <button onClick={HandleButton} className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
+          <button onClick={HandleButton3} className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
             Shop Now
           </button>
         </div>
@@ -167,15 +174,7 @@ function HomeComponent() {
 
       {/* -------------------->Banner section start<--------------------------- */}
 
-      <div className="flex justify-center items-center">
-        <button
-          onClick={HandleButton}
-          className="h-15 px-6 mt-6 w-50 rounded-full font-bold bg-cyan-600 hover:bg-cyan-800 cursor-pointer text-white">
-
-          ALL PRODUCTS
-        </button>
-      </div>
-
+    
       <div className="relative w-full h-[60vh] pt-5 overflow-hidden">
         <img
           src={banner}
@@ -194,7 +193,7 @@ function HomeComponent() {
             more-or-less normal distribution of letters...
           </p>
 
-          <button onClick={HandleButton} className="mt-8 px-8 py-3 rounded-xl border-2 border-white bg-white text-black font-bold hover:bg-transparent hover:text-white transition duration-300 drop-shadow-md">
+          <button onClick={HandleButton1} className="mt-8 px-8 py-3 cursor-pointer rounded-xl border-2 border-white bg-white text-black font-bold hover:bg-transparent hover:text-white transition duration-300 drop-shadow-md">
             Shop Now
           </button>
         </div>

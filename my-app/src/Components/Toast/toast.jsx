@@ -108,7 +108,7 @@ const Toast = ({ message, type = 'info', onClose }) => {
           {/* Message */}
           <div className="flex-1">
             <span className="font-semibold text-lg block">{message}</span>
-            <span className="text-white/80 text-sm">Just now</span>
+          
           </div>
 
           {/* Close Button */}

@@ -1,4 +1,7 @@
 import { FaShippingFast, FaLock, FaUndo, FaHeadset } from "react-icons/fa";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const services = [
   {
@@ -23,7 +26,15 @@ const services = [
   },
 ];
 
+
 const Services = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true, // animation only once
+    });
+  }, []);
+
   return (
     <section className="py-10 px-4 !bg-gray-100 dark:!bg-gray-100 transition-colors duration-700">
       <div className="max-w-6xl mx-auto text-center">
@@ -36,8 +47,8 @@ const Services = () => {
             <div
               key={index}
               className="bg-cyan-300 dark:bg-cyan-700 shadow-md dark:shadow-lg rounded-xl p-6 cursor-pointer hover:scale-105 transform transition duration-300"
-              data-aos="fade-up"              
-              data-aos-delay={index * 150}    
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
             >
               <div className="mb-4 flex justify-center">{service.icon}</div>
               <h3 className="text-xl font-semibold text-white mb-2">
@@ -53,5 +64,6 @@ const Services = () => {
     </section>
   );
 };
+
 
 export default Services;

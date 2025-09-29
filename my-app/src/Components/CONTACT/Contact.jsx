@@ -70,7 +70,7 @@ const ContactComponent = () => {
             ></textarea>
             <button
               type="submit"
-              className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-lg"
+              className="w-full cursor-pointer bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-lg"
             >
               Send Message
             </button>

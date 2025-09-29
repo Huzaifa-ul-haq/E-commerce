@@ -57,7 +57,7 @@ const handleSubmit = async (event) => {
 
   return (
    <div className="w-full h-[90vh] flex justify-center items-center bg-gradient-to-br from-teal-100 via-cyan-100 to-gray-200">
-  <div className="w-[400px] bg-white shadow-2xl border border-teal-300 rounded-3xl p-8 mt-20 px-5">
+  <div className="w-[350px] bg-white shadow-2xl border border-teal-300 rounded-3xl p-8 mt-20 px-5">
     {message && (
       <span className="text-teal-700 font-semibold text-2xl text-center block mb-4">
         {message}

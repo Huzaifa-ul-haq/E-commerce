@@ -30,6 +30,11 @@ const OrderList = () => {
             <tr>
               <th className="py-3 px-6 text-left font-semibold tracking-wider">Order ID</th>
               <th className="py-3 px-6 text-left font-semibold tracking-wider">User</th>
+              <th className="py-3 px-6 text-left font-semibold tracking-wider">Email</th>
+              <th className="py-3 px-6 text-left font-semibold tracking-wider">Phone</th>
+              <th className="py-3 px-6 text-left font-semibold tracking-wider">Address</th>
+              <th className="py-3 px-6 text-left font-semibold tracking-wider">City</th>
+              <th className="py-3 px-6 text-left font-semibold tracking-wider">Country</th>
               <th className="py-3 px-6 text-left font-semibold tracking-wider">Status</th>
               <th className="py-3 px-6 text-left font-semibold tracking-wider">Total</th>
               <th className="py-3 px-6 text-left font-semibold tracking-wider">Action</th>
@@ -39,7 +44,7 @@ const OrderList = () => {
           <tbody>
             {orders.length === 0 ? (
               <tr>
-                <td colSpan={5} className="text-center py-6 text-gray-500 font-medium">
+                <td colSpan={10} className="text-center py-6 text-gray-500 font-medium">
                   No orders found.
                 </td>
               </tr>
@@ -51,6 +56,11 @@ const OrderList = () => {
                 >
                   <td className="py-4 px-6 text-gray-700 font-mono">{order.id}</td>
                   <td className="py-4 px-6 text-gray-800 font-semibold">{order.user_name || "N/A"}</td>
+                  <td className="py-4 px-6 text-gray-700">{order.email || "N/A"}</td>
+                  <td className="py-4 px-6 text-gray-700">{order.phone || "N/A"}</td>
+                  <td className="py-4 px-6 text-gray-700">{order.address || "N/A"}</td>
+                  <td className="py-4 px-6 text-gray-700">{order.city || "N/A"}</td>
+                  <td className="py-4 px-6 text-gray-700">{order.country || "N/A"}</td>
                   <td
                     className={`py-4 px-6 font-semibold ${
                       order.status === "completed"

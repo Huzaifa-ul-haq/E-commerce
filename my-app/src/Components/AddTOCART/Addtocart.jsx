@@ -6,10 +6,12 @@ import { useContext, useState } from "react";
 import { FiShoppingCart, FiTrash } from "react-icons/fi";
 import { CartContext } from "../../CardContext";
 import supabase from "../../SupabaseClient";
+import {  useNavigate } from "react-router";
 
 export function AddCartComponent() {
   const { cartItems, handleAdd, handleRemove, handleDelete } = useContext(CartContext) || {};
   const [isOpen, setIsOpen] = useState(false);
+   const navigate = useNavigate();
 
   const totalItems = cartItems ? cartItems.reduce((total, item) => total + item.quantity, 0) : 0;
   const totalPrice = cartItems ? cartItems.reduce((sum, item) => sum + item.totalPrice, 0) : 0;
@@ -24,6 +26,10 @@ export function AddCartComponent() {
       console.error("User not logged in:", sessionError?.message);
       return;
     }
+
+
+         
+
 
     const user = sessionData.session.user;
     
@@ -79,13 +85,7 @@ export function AddCartComponent() {
     }
     handleAdd(item.id);
   };
-  const {  checkout } = useContext(CartContext) || {};
 
-const handleCheckout = async () => {
-  if (checkout) {
-    await checkout();
-  }
-};
 
   const handleRemoveWithDB = async (itemId) => {
     
@@ -151,6 +151,17 @@ const handleCheckout = async () => {
     
     handleDelete(itemId);
   };
+
+  
+  const handleBack = () => {
+    navigate('/Shop')
+
+  };
+
+    const handleCheckout = () => {
+    navigate('/checkout')
+
+  }
 
 
   
@@ -238,15 +249,26 @@ const handleCheckout = async () => {
     <h3 className="text-xl font-bold text-blue-700 mb-4">
       Total Price: <span className="text-blue-600">${totalPrice.toFixed(2)}</span>
     </h3>
-    
-    
-   
-    
-    <button
-      onClick={handleCheckout}
-      className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 cursor-pointer"
+
+     <button
+       onClick={async () => {
+        await handleCheckout();
+        handleClose();
+      }}
+      className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold mx-2  p-2 px-4 rounded-lg transition-colors duration-200 cursor-pointer"
     >
-      🛒 Checkout Now
+      🛒 Checkout
+      
+    </button>
+   
+    <button
+       onClick={async () => {
+        await handleBack();
+        handleClose();
+      }}
+      className="w-full bg-black  text-white font-bold p-2 mx-2 mt-3  px-4 rounded-lg transition-colors duration-200 cursor-pointer"
+    >
+     Back to shop
       
     </button>
     

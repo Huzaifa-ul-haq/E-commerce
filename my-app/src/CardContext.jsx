@@ -9,6 +9,7 @@ import Toast from "./Components/Toast/toast";
 
 
 
+
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -68,13 +69,8 @@ export const CartProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-
-
-
-
-
+};
+  
 const addToCart = async (product) => {
   const user = await checkAuth();
   if (!user) {
@@ -347,24 +343,37 @@ const handleDelete = async (productId) => {
   };
 
 
-  const checkout = async () => {
+
+
+
+const checkout = async (formData) => {
   const user = await checkAuth();
   if (!user) {
     showToast("Please login to checkout", "error");
     return;
   }
-  const itemsToOrder = [...cartItems]; 
-  setCartItems([]);
-  showToast(`Your order is being placed...`, "success");
+
+  if (!cartItems || cartItems.length === 0) {
+    showToast("Your cart is empty!", "error");
+    return;
+  }
+
+  const itemsToOrder = [...cartItems];
 
   try {
-    const totalPrice = itemsToOrder.reduce((sum, item) => sum + item.totalPrice, 0);   
+    const totalPrice = itemsToOrder.reduce((sum, item) => sum + item.totalPrice, 0);
+
     const { data: order, error: orderError } = await supabase
       .from("orders")
       .insert([
         {
           user_id: user.id,
-          user_name: user.user_metadata?.full_name || "Guest",
+          user_name: formData.fullName || user.user_metadata?.full_name || "Guest",
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          country: formData.country,
           total_amount: totalPrice,
           status: "completed",
         },
@@ -374,8 +383,11 @@ const handleDelete = async (productId) => {
 
     if (orderError) {
       console.error("Order creation error:", orderError);
+      showToast("Failed to create order", "error");
       return;
     }
+
+    // Add order items
     for (const item of itemsToOrder) {
       const { error: itemError } = await supabase.from("order_items").insert([
         {
@@ -387,11 +399,15 @@ const handleDelete = async (productId) => {
           total_price: item.totalPrice,
         },
       ]);
+
       if (itemError) {
         console.error("Order item error:", itemError);
-    
+        showToast("Failed to add order items", "error");
+        return;
       }
     }
+
+    // Clear cart
     const { error: deleteError } = await supabase
       .from("cart_items")
       .delete()
@@ -399,13 +415,17 @@ const handleDelete = async (productId) => {
 
     if (deleteError) {
       console.error("Cart clear error:", deleteError);
+      showToast("Failed to clear cart", "error");
+      return;
     }
+
+    setCartItems([]);
+    showToast("Order placed successfully!", "success");
   } catch (error) {
     console.error("Checkout error:", error);
-  
+    showToast("Unexpected error during checkout", "error");
   }
 };
-
 
 
 
