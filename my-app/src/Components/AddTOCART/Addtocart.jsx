@@ -248,7 +248,7 @@ export function AddCartComponent() {
         </DrawerItems>
 
         {cartItems && cartItems.length > 0 && (
-          <div className="px-4 sm:px-6 py-4 border-t border-gray-300 bg-gray-50 rounded-b-3xl">
+          <div className="px-4 sm:px-6 py-4 h-[200px] border-t border-gray-300 bg-gray-50 rounded-b-3xl">
             <h3 className="text-lg sm:text-xl font-bold text-blue-700 mb-3">
               Total Price: <span className="text-blue-600">${totalPrice.toFixed(2)}</span>
             </h3>
