@@ -3,11 +3,12 @@ import pic1 from '/images/hh.jpg';
 import pic2 from '/images/second-hero.webp';
 import pic3 from '/images/modern-2.avif';
 import banner from '/images/banner1.avif'
-import BoysComponent from '../TrendingItems/trendingitems';
+import TrendingComponent from '../TrendingItems/trendingitems';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router';
+
 
 function HomeComponent() {
   useEffect(() => {
@@ -22,10 +23,10 @@ function HomeComponent() {
   const HandleButton1 = () => {
     navigate('/Shop')
   }
-    const HandleButton2 = () => {
+  const HandleButton2 = () => {
     navigate('/shop?category=Women')
   }
-    const HandleButton3 = () => {
+  const HandleButton3 = () => {
     navigate('/shop?category=Men')
   }
 
@@ -63,22 +64,22 @@ function HomeComponent() {
 
         {/* Image Section */}
         <div
-  className="w-full flex justify-center items-center pt-20 px-4 md:px-8"
-  data-aos="zoom-in"
-  data-aos-delay="300"
-  data-aos-duration="1000"
->
-  <div className="relative w-full max-w-md sm:max-w-lg md:max-w-lg lg:max-w-lg aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
-    <img
-      src={pic1}
-      alt="Essential Collection"
-      className="w-full h-full object-cover rounded-2xl transition-transform duration-500"
-    />
+          className="w-full flex justify-center items-center pt-20 px-4 md:px-8"
+          data-aos="zoom-in"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+        >
+          <div className="relative w-full max-w-md sm:max-w-lg md:max-w-lg lg:max-w-lg aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <img
+              src={pic1}
+              alt="Essential Collection"
+              className="w-full h-full object-cover rounded-2xl transition-transform duration-500"
+            />
 
-    {/* Optional blur/glow effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent blur-2xl opacity-30 pointer-events-none rounded-2xl"></div>
-  </div>
-</div>
+            {/* Optional blur/glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent blur-2xl opacity-30 pointer-events-none rounded-2xl"></div>
+          </div>
+        </div>
 
       </div>
 
@@ -93,21 +94,21 @@ function HomeComponent() {
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          
-            <h1 className="text-3xl sm:text-4xl  md:text-5xl font-serif font-bold leading-snug text-teal-500 drop-shadow-md ">
-              Elegant Fashion
-            </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-[500px]">
-              It is a long established fact that a reader will be distracted by the readable content
-              of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-              more-or-less normal distribution of letters...
-            </p>
+          <h1 className="text-3xl sm:text-4xl  md:text-5xl font-serif font-bold leading-snug text-teal-500 drop-shadow-md ">
+            Elegant Fashion
+          </h1>
 
-            <button onClick={HandleButton2} className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
-              Shop Now
-            </button>
-          
+          <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-[500px]">
+            It is a long established fact that a reader will be distracted by the readable content
+            of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+            more-or-less normal distribution of letters...
+          </p>
+
+          <button onClick={HandleButton2} className="mt-4 px-6 py-2 bg-gradient-to-r from-cyan-500 to-teal-700  hover:from-cyan-700 hover:to-teal-500 text-white font-semibold tracking-wide rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer">
+            Shop Now
+          </button>
+
         </div>
 
         {/* Image Section */}
@@ -167,14 +168,14 @@ function HomeComponent() {
 
 
       {/*--------------------> <boys clothing section start> <--------------*/}
-      <BoysComponent />
+      <TrendingComponent />
       {/*--------------------> <boys clothing section end> <--------------*/}
 
 
 
       {/* -------------------->Banner section start<--------------------------- */}
 
-    
+
       <div className="relative w-full h-[60vh] pt-5 overflow-hidden">
         <img
           src={banner}

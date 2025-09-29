@@ -1,11 +1,11 @@
 import React from "react";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaFacebookF,FaInstagram, FaLinkedinIn, FaTwitterSquare  } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitterSquare } from "react-icons/fa";
 import { Link, Links, useLocation } from "react-router";
 
 export default function FooterComponent() {
-   const location = useLocation();
-    const links = [
+  const location = useLocation();
+  const links = [
     { name: "About Us", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Shop", path: "/shop" },
@@ -41,31 +41,30 @@ export default function FooterComponent() {
         </div>
 
         {/* Quick Links */}
-       
-  
-    <div>
-      <h2 className="text-xl font-semibold text-teal-700 mb-5">Quick Links</h2>
-      <ul className="space-y-3 text-sm">
-        {links.map(({ name, path }) => {
-          const isActive = location.pathname === path;
 
-          return (
-            <li key={name}>
-              <Link
-                to={path}
-                className={`cursor-pointer transition-colors duration-300 ${
-                  isActive ? "text-cyan-600 font-semibold" : "hover:text-cyan-600"
-                }`}
-              >
-                {name}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  
-  
+
+        <div>
+          <h2 className="text-xl font-semibold text-teal-700 mb-5">Quick Links</h2>
+          <ul className="space-y-3 text-sm">
+            {links.map(({ name, path }) => {
+              const isActive = location.pathname === path;
+
+              return (
+                <li key={name}>
+                  <Link
+                    to={path}
+                    className={`cursor-pointer transition-colors duration-300 ${isActive ? "text-cyan-600 font-semibold" : "hover:text-cyan-600"
+                      }`}
+                  >
+                    {name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+
 
         {/* Customer Care */}
         <div>

@@ -15,9 +15,6 @@ export function NavbarComponent() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-
-
-
   useEffect(() => {
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -38,9 +35,6 @@ export function NavbarComponent() {
   const closeMenu = () => setIsOpen(false);
   const { setCartItems } = useContext(CartContext);
 
-
-
-
   const signout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -49,14 +43,14 @@ export function NavbarComponent() {
     }
 
     setCartItems([]);
-    closeMenu(); 
-    
+    closeMenu();
+
 
   };
 
 
 
-  const HandleOnClick1 = () => { 
+  const HandleOnClick1 = () => {
     closeMenu();
     navigate("/login")
   };

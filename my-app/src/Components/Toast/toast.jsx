@@ -6,17 +6,17 @@ const Toast = ({ message, type = 'info', onClose }) => {
   const [progress, setProgress] = useState(100);
 
   useEffect(() => {
-    
+
     setIsVisible(true);
-    
+
     const progressInterval = setInterval(() => {
-      setProgress(prev => Math.max(prev - 3.33, 0)); 
+      setProgress(prev => Math.max(prev - 3.33, 0));
     }, 100);
 
-    
+
     const timer = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onClose, 300); 
+      setTimeout(onClose, 300);
     }, 3000);
 
     return () => {
@@ -37,21 +37,21 @@ const Toast = ({ message, type = 'info', onClose }) => {
 
   const getStyles = () => {
     switch (type) {
-      case 'success': 
+      case 'success':
         return {
           bg: 'bg-cyan-500',
           border: 'border-cyan-600',
           progress: 'bg-cyan-300',
           iconBg: 'bg-cyan-600'
         };
-      case 'error': 
+      case 'error':
         return {
-          bg: 'bg-red-500', 
+          bg: 'bg-red-500',
           border: 'border-red-600',
           progress: 'bg-red-300',
           iconBg: 'bg-red-600'
         };
-      case 'warning': 
+      case 'warning':
         return {
           bg: 'bg-orange-500',
           border: 'border-orange-600',
@@ -65,7 +65,7 @@ const Toast = ({ message, type = 'info', onClose }) => {
           progress: 'bg-purple-300',
           iconBg: 'bg-purple-600'
         };
-      default: 
+      default:
         return {
           bg: 'bg-blue-500',
           border: 'border-blue-600',
@@ -83,16 +83,15 @@ const Toast = ({ message, type = 'info', onClose }) => {
       {isVisible && (
         <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300" />
       )}
-      
+
       {/* Toast Container */}
-      <div className={`fixed top-15  right-5 z-50 transform transition-all duration-300 ease-in-out ${
-        isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
-      }`}>
+      <div className={`fixed top-20 left-3   z-50 transform transition-all duration-300 ease-in-out ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+        }`}>
         <div className={`${styles.bg} text-white p-4 rounded-2xl shadow-2xl border-l-4 ${styles.border} flex items-center space-x-4 min-w-[350px] max-w-md relative overflow-hidden backdrop-blur-lg bg-opacity-90`}>
-          
+
           {/* Progress Bar */}
           <div className="absolute top-0 left-0 h-1 w-full">
-            <div 
+            <div
               className={`h-full ${styles.progress} transition-all duration-100 ease-linear`}
               style={{ width: `${progress}%` }}
             />
@@ -108,7 +107,7 @@ const Toast = ({ message, type = 'info', onClose }) => {
           {/* Message */}
           <div className="flex-1">
             <span className="font-semibold justify-center text-lg block">{message}</span>
-          
+
           </div>
 
           {/* Close Button */}

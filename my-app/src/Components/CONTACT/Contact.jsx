@@ -36,7 +36,7 @@ const ContactComponent = () => {
       </h2>
 
       <div className="grid md:grid-cols-2 gap-12 items-start ">
-  
+
 
         {/* Contact Form */}
         <div className="bg-gray-100 p-8 rounded-2xl shadow-md border border-cyan-900 ">
@@ -81,7 +81,7 @@ const ContactComponent = () => {
             )}
           </form>
         </div>
-              {/* Contact Info */}
+        {/* Contact Info */}
         <div className="space-y-6 text-black pt-5 grid justify-center items-center">
           <h3 className="text-3xl font-semibold text-cyan-700">Contact Information</h3>
           <ul className="space-y-5 text-lg">

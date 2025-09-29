@@ -17,6 +17,7 @@ import ServicesComponent from './Components/Services/Services'
 import OrderDetail from './Components/Admin/OrderDetails'
 import HomeComponent from './Components/HOME/Home'
 import CheckoutForm from './Components/CheckOut/checkout'
+import NotFound from './Components/NotFound/notfound'
 
 
 
@@ -45,7 +46,7 @@ function App() {
         <Route path="/services" element={<ServicesComponent />} />
         <Route path="/checkout" element={<CheckoutForm />} />
 
-        
+
 
         <Route
           path="/admin/orders"
@@ -68,9 +69,12 @@ function App() {
           }
         />
 
+        <Route path="*" element={<NotFound  />} />
+
       </Routes>
 
       <FooterComponent />
+
 
     </>
   )

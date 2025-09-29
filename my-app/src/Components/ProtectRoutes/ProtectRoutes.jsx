@@ -3,7 +3,7 @@ import { Navigate } from "react-router";
 import supabase from "../../SupabaseClient";
 
 const ProtectRoute = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(null); 
+  const [isAdmin, setIsAdmin] = useState(null);
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const ProtectRoute = ({ children }) => {
   }, []);
 
   if (checking || isAdmin === null) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   if (!isAdmin) {

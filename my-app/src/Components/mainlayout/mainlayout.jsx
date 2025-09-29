@@ -14,10 +14,6 @@ export default function Mainlayout() {
             <Outlet
 
             />
-
-
-
-
         </>
 
 

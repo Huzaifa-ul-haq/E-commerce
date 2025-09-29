@@ -8,18 +8,18 @@ import { CartContext } from '../../CardContext';
 
 
 
-function BoysComponent() {
+function TrendingComponent() {
   const { addToCart } = useContext(CartContext);
 
 
 
   const trendingItems = [
-    { id: 17, name: "Polo shirt", img: "/images/polo.webp", price: "60.00" },
-    { id: 18, name: "Round neck men's t-shirt", img: "/images/round.webp", price: "20.00" },
-    { id: 19, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00", },
-    { id: 20, name: "Baby Sweater", img: "/images/kids03.webp", price: "80.00" },
-    { id: 21, name: "Wedding Frock", img: "/images/girls07.jpg", price: "80.00" },
-    { id: 22, name: "Women's Shirt", img: "/images/girls-4.webp", price: "90.00" },
+    { id: 25, name: "Polo shirt", img: "/images/polo.webp", price: "60.00" },
+    { id: 26, name: "Round neck men's t-shirt", img: "/images/round.webp", price: "20.00" },
+    { id: 27, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00", },
+    { id: 28, name: "Baby Sweater", img: "/images/kids03.webp", price: "80.00" },
+    { id: 29, name: "Wedding Frock", img: "/images/girls07.jpg", price: "80.00" },
+    { id: 30, name: "Women's Shirt", img: "/images/girls-4.webp", price: "90.00" },
 
   ];
 
@@ -27,8 +27,6 @@ function BoysComponent() {
     addToCart(item);
 
   };
-
-
 
   return (
     <>
@@ -47,7 +45,7 @@ function BoysComponent() {
               key={`${item.id}-${i}`}
               className="w-[280px] h-[450px] !bg-white group overflow-hidden shadow-xl rounded-3xl !border-gray-200 hover:shadow-2xl transition-shadow duration-300"
             >
-            
+
 
               <div className="overflow-hidden rounded-t-3xl h-[200px]">
                 <img
@@ -56,7 +54,7 @@ function BoysComponent() {
                   className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 rounded-t-3xl"
                 />
               </div>
-              
+
 
               <div className=" flex flex-col justify-between py-4 gap-3">
                 <h5 className="text-lg font-semibold tracking-wide text-gray-800 text-center">
@@ -90,4 +88,4 @@ function BoysComponent() {
   );
 }
 
-export default BoysComponent;
+export default TrendingComponent;

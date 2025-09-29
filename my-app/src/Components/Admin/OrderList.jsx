@@ -62,13 +62,12 @@ const OrderList = () => {
                   <td className="py-4 px-6 text-gray-700">{order.city || "N/A"}</td>
                   <td className="py-4 px-6 text-gray-700">{order.country || "N/A"}</td>
                   <td
-                    className={`py-4 px-6 font-semibold ${
-                      order.status === "completed"
-                        ? "text-green-600"
-                        : order.status === "pending"
+                    className={`py-4 px-6 font-semibold ${order.status === "completed"
+                      ? "text-green-600"
+                      : order.status === "pending"
                         ? "text-yellow-600"
                         : "text-red-600"
-                    }`}
+                      }`}
                   >
                     {order.status}
                   </td>

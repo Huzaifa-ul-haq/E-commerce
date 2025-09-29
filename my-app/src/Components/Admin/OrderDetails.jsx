@@ -87,13 +87,12 @@ const OrderDetails = () => {
         <p className="text-lg font-semibold">
           Status:{" "}
           <span
-            className={`${
-              order.status === "completed"
+            className={`${order.status === "completed"
                 ? "text-green-600"
                 : order.status === "pending"
-                ? "text-yellow-600"
-                : "text-red-600"
-            }`}
+                  ? "text-yellow-600"
+                  : "text-red-600"
+              }`}
           >
             {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
           </span>

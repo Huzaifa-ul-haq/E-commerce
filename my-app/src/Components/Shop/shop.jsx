@@ -20,27 +20,33 @@ export default function ShopComponent() {
 
   const trendingItems = [
     // Kids
-    { id: 0, name: "Baby Shirt", img: "/images/kids02.webp", price: "80.00", category: "Kids" },
-    { id: 1, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00", category: "Kids" },
-    { id: 2, name: "Baby Rompar", img: "/images/kids-0.webp", price: "80.00", category: "Kids" },
-    { id: 3, name: "Baby Sweater", img: "/images/kids03.webp", price: "80.00", category: "Kids" },
-    { id: 4, name: "Summer Clothes", img: "/images/kids_04.jpg", price: "80.00", category: "Kids" },
-    { id: 5, name: "Baby Boy Dress", img: "/images/kids05.avif", price: "80.00", category: "Kids" },
-
+    { id: 1, name: "Baby Rompar", img: "/images/kids0.jpg", price: "80.00", category: "Kids" },
+    { id: 2, name: "Baby Suit", img: "/images/kids01.webp", price: "60.00", category: "Kids" },
+    { id: 3, name: "Baby Shirt", img: "/images/kids02.webp", price: "80.00", category: "Kids" },
+    { id: 4, name: "Baby Sweater", img: "/images/kids03.webp", price: "80.00", category: "Kids" },
+    { id: 5, name: "Summer Clothes", img: "/images/kids_04.jpg", price: "80.00", category: "Kids" },
+    { id: 6, name: "Baby Boy Dress", img: "/images/kids05.avif", price: "80.00", category: "Kids" },
+    { id: 7, name: "Rompar", img: "/images/kids.avif", price: "80.00", category: "Kids" },
+    { id: 8, name: "Baby Dress", img: "/images/kids07.avif", price: "80.00", category: "Kids" },
     // Men
-    { id: 6, name: "Polo Shirt", img: "/images/polo.webp", price: "60.00", category: "Men" },
-    { id: 7, name: "Round Neck T-Shirt", img: "/images/round.webp", price: "20.00", category: "Men" },
-    { id: 8, name: "Men T-shirt", img: "/images/Men.webp", price: "40.00", category: "Men" },
-    { id: 9, name: "Black T-shirt", img: "/images/black.webp", price: "90.00", category: "Men" },
-    { id: 10, name: "Yellow Striped Shirt", img: "/images/striped.webp", price: "80.00", category: "Men" },
+    { id: 9, name: "Polo Shirt", img: "/images/polo.webp", price: "60.00", category: "Men" },
+    { id: 10, name: "Round Neck Men's T-shirt", img: "/images/round.webp", price: "20.00", category: "Men" },
+    { id: 11, name: "Men T-shirt", img: "/images/Men.webp", price: "40.00", category: "Men" },
+    { id: 12, name: "Black T-shirt", img: "/images/black.webp", price: "90.00", category: "Men" },
+    { id: 13, name: "Yellow Striped Shirt", img: "/images/striped.webp", price: "80.00", category: "Men" },
+    { id: 14, name: "Polka Dot White Shirt", img: "/images/polka.webp", price: "40.00", category: "Men" },
+    { id: 15, name: "Men's Pink Striped T-shirt", img: "/images/PINK.webp", price: "60.00", category: "Men" },
+    { id: 16, name: "Long Sleeved Shirt", img: "/images/LONG-SHIRT.webp", price: "50.00", category: "Men" },
 
     // Women
-    { id: 11, name: "Twisted Waist Shirt", img: "/images/girls-1.webp", price: "60.00", category: "Women" },
-    { id: 12, name: "Floral Shirt", img: "/images/girls-2.webp", price: "20.00", category: "Women" },
-    { id: 13, name: "Collared Blouse", img: "/images/girls3.webp", price: "40.00", category: "Women" },
-    { id: 14, name: "Women's Shirt", img: "/images/girls-4.webp", price: "90.00", category: "Women" },
-    { id: 25, name: "Collar Shirt", img: "/images/girls-5.webp", price: "60.00", category: "Women" },
-    { id: 16, name: "Wedding Frock", img: "/images/girls07.jpg", price: "80.00", category: "Women" },
+    { id: 17, name: "Twisted Waist Shirt", img: "/images/girls-1.webp", price: "60.00", category: "Women" },
+    { id: 18, name: "Floral Shirt", img: "/images/girls-2.webp", price: "20.00", category: "Women" },
+    { id: 19, name: "Collared Blouse", img: "/images/girls3.webp", price: "40.00", category: "Women" },
+    { id: 20, name: "Women`s Shirt", img: "/images/girls-4.webp", price: "90.00", category: "Women" },
+    { id: 21, name: "Collar Shirt", img: "/images/girls-5.webp", price: "60.00", category: "Women" },
+    { id: 22, name: "Beauty Dress", img: "/images/shirt12.jpg", price: "70.00", category: "Women" },
+    { id: 23, name: "Royal Blue Shirt", img: "/images/Royal Blue Shirt.webp", price: "50.00", category: "Women" },
+    { id: 24, name: "Wedding Frock", img: "/images/girls07.jpg", price: "80.00", category: "Women" }
   ];
 
   const handleAddToCart = (item) => {
@@ -64,7 +70,7 @@ export default function ShopComponent() {
     });
   }, []);
 
- 
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const category = params.get('category');
@@ -75,7 +81,7 @@ export default function ShopComponent() {
           behavior: 'smooth',
           block: 'start',
         });
-      }, 300); 
+      }, 300);
     }
   }, [location.search]);
 
