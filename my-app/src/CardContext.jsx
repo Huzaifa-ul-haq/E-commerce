@@ -342,87 +342,84 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+const checkout = async (formData) => {
+  const user = await checkAuth();
+  if (!user) {
+    showToast("Please login to checkout", "error");
+    return;
+  }
 
-  const checkout = async (formData) => {
-    const user = await checkAuth();
-    if (!user) {
-      showToast("Please login to checkout", "error");
+  if (!cartItems || cartItems.length === 0) {
+    showToast("Your cart is empty!", "error");
+    return;
+  }
+
+  const itemsToOrder = [...cartItems];
+  const totalPrice = itemsToOrder.reduce((sum, item) => sum + item.totalPrice, 0);
+
+  // ✅ Optimistically show success & clear cart in UI
+  setCartItems([]);
+  showToast("Order placed successfully!", "success");
+
+  // 🕓 Continue database operations in background
+  try {
+    const { data: order, error: orderError } = await supabase
+      .from("orders")
+      .insert([
+        {
+          user_id: user.id,
+          user_name: formData.fullName || user.user_metadata?.full_name || "Guest",
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          country: formData.country,
+          total_amount: totalPrice,
+          status: "completed",
+        },
+      ])
+      .select()
+      .single();
+
+    if (orderError) {
+      console.error("Order creation error:", orderError);
       return;
     }
 
-    if (!cartItems || cartItems.length === 0) {
-      showToast("Your cart is empty!", "error");
+    // Insert order items
+    for (const item of itemsToOrder) {
+      const { error: itemError } = await supabase.from("order_items").insert([
+        {
+          order_id: order.id,
+          product_id: item.id,
+          product_name: item.name,
+          price: parseFloat(item.price.replace("$", "")),
+          quantity: item.quantity,
+          total_price: item.totalPrice,
+        },
+      ]);
+
+      if (itemError) {
+        console.error("Order item error:", itemError);
+        return;
+      }
+    }
+
+    // Clear server-side cart
+    const { error: deleteError } = await supabase
+      .from("cart_items")
+      .delete()
+      .eq("user_id", user.id);
+
+    if (deleteError) {
+      console.error("Cart clear error:", deleteError);
       return;
     }
 
-    const itemsToOrder = [...cartItems];
-
-    try {
-      const totalPrice = itemsToOrder.reduce((sum, item) => sum + item.totalPrice, 0);
-
-      const { data: order, error: orderError } = await supabase
-        .from("orders")
-        .insert([
-          {
-            user_id: user.id,
-            user_name: formData.fullName || user.user_metadata?.full_name || "Guest",
-            email: formData.email,
-            phone: formData.phone,
-            address: formData.address,
-            city: formData.city,
-            country: formData.country,
-            total_amount: totalPrice,
-            status: "completed",
-          },
-        ])
-        .select()
-        .single();
-
-      if (orderError) {
-        console.error("Order creation error:", orderError);
-        showToast("Failed to create order", "error");
-        return;
-      }
-
-      // Add order items
-      for (const item of itemsToOrder) {
-        const { error: itemError } = await supabase.from("order_items").insert([
-          {
-            order_id: order.id,
-            product_id: item.id,
-            product_name: item.name,
-            price: parseFloat(item.price.replace("$", "")),
-            quantity: item.quantity,
-            total_price: item.totalPrice,
-          },
-        ]);
-
-        if (itemError) {
-          console.error("Order item error:", itemError);
-          showToast("Failed to add order items", "error");
-          return;
-        }
-      }
-
-      // Clear cart
-      const { error: deleteError } = await supabase
-        .from("cart_items")
-        .delete()
-        .eq("user_id", user.id);
-
-      if (deleteError) {
-        console.error("Cart clear error:", deleteError);
-        showToast("Failed to clear cart", "error");
-        return;
-      }
-
-      setCartItems([]);
-      showToast("Order placed successfully!", "success");
-    } catch (error) {
-      console.error("Checkout error:", error);
-      showToast("Unexpected error during checkout", "error");
-    }
-  };
+  } catch (error) {
+    console.error("Unexpected error during checkout:", error);
+  }
+};
 
 
 

@@ -225,7 +225,7 @@ export function AddCartComponent() {
                   <div className="mt-4 flex items-center gap-2 sm:gap-3">
                     <button
                       onClick={() => handleRemoveWithDB(item.id)}
-                      className="w-8 h-8 sm:w-9 sm:h-9 text-xl flex items-center justify-center rounded-full border border-blue-400 text-blue-600 hover:bg-blue-800 hover:text-white transition"
+                      className="w-8 h-8 sm:w-9 sm:h-9 text-xl cursor-pointer flex items-center justify-center rounded-full border border-blue-400 text-blue-600 hover:bg-blue-800 hover:text-white transition"
                       aria-label={`Remove one ${item.name}`}
                     >
                       -
@@ -235,7 +235,7 @@ export function AddCartComponent() {
                     </span>
                     <button
                       onClick={() => handleAddWithDB(item)}
-                      className="w-8 h-8 sm:w-9 sm:h-9 text-xl flex items-center justify-center rounded-full border border-blue-400 text-blue-600 hover:bg-blue-800 hover:text-white transition"
+                      className="w-8 h-8 cursor-pointer sm:w-9 sm:h-9 text-xl flex items-center justify-center rounded-full border border-blue-400 text-blue-600 hover:bg-blue-800 hover:text-white transition"
                       aria-label={`Add one more ${item.name}`}
                     >
                       +
@@ -258,7 +258,7 @@ export function AddCartComponent() {
                 await handleCheckout();
                 handleClose();
               }}
-              className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 text-sm sm:text-base"
+              className="w-full bg-cyan-600 cursor-pointer hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 text-sm sm:text-base"
             >
               🛒 Checkout
             </button>
@@ -268,7 +268,7 @@ export function AddCartComponent() {
                 await handleBack();
                 handleClose();
               }}
-              className="w-full bg-black text-white font-bold py-2 px-4 rounded-lg transition duration-200 mt-3 text-sm sm:text-base"
+              className="w-full bg-black cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-200 mt-3 text-sm sm:text-base"
             >
               Back to shop
             </button>

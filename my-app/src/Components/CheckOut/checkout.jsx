@@ -141,7 +141,7 @@ const CheckoutForm = () => {
         <div className="text-center pt-4">
           <button
             type="submit"
-            className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-md text-lg font-semibold transition duration-300 cursor-pointer"
+            className="bg-teal-600 cursor-pointer hover:bg-teal-700 text-white px-8 py-3 rounded-md text-lg font-semibold transition duration-300 "
           >
             Place Order
           </button>
