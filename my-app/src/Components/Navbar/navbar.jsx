@@ -131,8 +131,8 @@ export function NavbarComponent() {
                 to={route}
                 onClick={closeMenu}
                 className={({ isActive }) =>
-                  `block px-4 py-2 rounded-md text-md font-serif italic transition-all duration-200 ${isActive
-                    ? "text-white bg-cyan-600"
+                  `block px-4 py-2 rounded-md text-md font-sans hover:font-semibold transition-all duration-200 ${isActive
+                    ? "text-white bg-cyan-600 font-bold"
                     : "text-gray-700 hover:text-white hover:bg-cyan-500"
                   }`
                 }
