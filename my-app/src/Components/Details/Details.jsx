@@ -50,59 +50,58 @@ export default function DetailComponent() {
   const handleAddToCart = () => {
     addToCart(product);
   };
+return (
+  <div className="max-w-6xl mx-auto px-2 py-6 sm:px-4 sm:py-14 mt-16">
+    {/* Back Button */}
+    <button
+      onClick={() => navigate(-1)}
+      className="flex items-center gap-1 text-teal-600 hover:text-teal-800 font-medium tracking-wide mb-4 sm:mb-8 text-sm transition"
+    >
+      <HiArrowLeft className="text-lg sm:text-xl !cursor-pointer" />
+      <span className="text-xs sm:text-sm uppercase cursor-pointer">Back to Shop</span>
+    </button>
 
-  return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 pt-25">
-      {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-teal-600 hover:text-teal-800 font-medium tracking-wide mb-8 transition"
-      >
-        <HiArrowLeft className="text-xl  !cursor-pointer" />
-        <span className="text-sm uppercase cursor-pointer">Back to Shop</span>
-      </button>
+    {/* Product Details */}
+    <div className="flex flex-col md:flex-row gap-6 sm:gap-10 md:gap-12 md:items-start">
+      {/* Image Section */}
+      <img
+        src={product.img}
+        alt={product.name}
+        className="w-full h-[200px] sm:h-[300px] md:w-[45%] md:h-[400px] object-contain rounded-xl shadow-md bg-white border border-gray-200"
+      />
 
-      {/* Product Details */}
-      <div className="flex flex-col md:flex-row gap-12 md:items-start">
-        {/* Image Section */}
-        <img
-          src={product.img}
-          alt={product.name}
-          className="w-full md:w-[45%] h-[300px] md:h-[400px] sm:h-[400px] lg:h-[400px] object-contain rounded-2xl shadow-xl bg-white-100 border border-gray-200"
-        />
+      {/* Product Info */}
+      <div className="flex-1 space-y-4 sm:space-y-6">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-gray-900 leading-snug">
+          {product.name}
+        </h1>
 
-        {/* Product Info */}
-        <div className="flex-1 space-y-6">
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight leading-snug">
-            {product.name}
-          </h1>
-
-          {/* Rating */}
-          <div className="flex items-center text-yellow-400 text-lg font-semibold">
-            {"★".repeat(4)}{" "}
-            <span className="text-sm text-gray-500 ml-2">(89 verified reviews)</span>
-          </div>
-
-          {/* Description */}
-          <p className="text-gray-700 text-base leading-relaxed">
-            {product.description}
-          </p>
-
-          {/* Price */}
-          <p className="text-4xl font-bold text-teal-700 tracking-tight">${product.price}</p>
-
-
-          <button
-            onClick={handleAddToCart}
-            className="inline-block w-full md:w-auto px-7 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white text-sm font-semibold uppercase tracking-wide rounded-lg hover:from-teal-700 hover:to-cyan-700 shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
-          >
-            Add to Cart
-          </button>
+        {/* Rating */}
+        <div className="flex items-center text-yellow-400 text-base sm:text-lg font-semibold">
+          {"★".repeat(4)}
+          <span className="text-xs sm:text-sm text-gray-500 ml-2">(89 verified reviews)</span>
         </div>
+
+        {/* Description */}
+        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+          {product.description}
+        </p>
+
+        {/* Price */}
+        <p className="text-2xl sm:text-4xl font-bold text-teal-700 tracking-tight">
+          ${product.price}
+        </p>
+
+        <button
+          onClick={handleAddToCart}
+          className="inline-block w-full md:w-auto px-6 py-2.5 sm:px-7 sm:py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white text-xs sm:text-sm font-semibold uppercase tracking-wide rounded-lg hover:from-teal-700 hover:to-cyan-700 shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
+  </div>
+);
 
-
-  );
 }
 
